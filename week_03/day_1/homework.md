@@ -28,7 +28,7 @@ SELECT * FROM movies;
 
 2.  Return ONLY the name column from the 'people' table
 
-SELECT name FROM people; 
+SELECT name FROM people;
 
 3.  Oops! Someone spelled Krusty The Clown's name wrong! Change it to reflect the proper spelling (Crusty should be Krusty).
 
