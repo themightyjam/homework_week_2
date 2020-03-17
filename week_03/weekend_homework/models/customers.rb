@@ -14,7 +14,7 @@ class Customer
   end
 
   def save()
-    sql = "INSERT INTO Customers
+    sql = "INSERT INTO customers
     (
       name,
       funds
@@ -30,7 +30,7 @@ class Customer
   end
 
   def film()
-      sql = "SELECT customers.*
+      sql = "SELECT films.*
       FROM films
       INNER JOIN tickets
       ON tickets.customer_id = customer.id
@@ -41,7 +41,7 @@ class Customer
     end
 
     def update()
-    sql = "UPDATE customers SET (name, funds) = ($1, $2,) WHERE id = $1"
+    sql = "UPDATE customers SET (name, funds) = ($1, $2) WHERE id = $1"
     values = [@name, @funds, @id]
     SqlRunner.run(sql, values)
   end

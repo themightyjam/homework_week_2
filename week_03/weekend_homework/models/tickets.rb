@@ -14,7 +14,7 @@ class Ticket
   end
 
   def save()
-    sql = "INSERT INTO Customers
+    sql = "INSERT INTO tickets
     (
       customer_id,
       film_id
@@ -48,7 +48,7 @@ class Ticket
       end
 
       def update()
-      sql = "UPDATE tickets SET (customer_id, film_id) = ($1, $2,) WHERE id = $1"
+      sql = "UPDATE tickets SET (customer_id, film_id) = ($1, $2) WHERE id = $1"
       values = [@customer_id, @film_id, @id]
       SqlRunner.run(sql, values)
     end
