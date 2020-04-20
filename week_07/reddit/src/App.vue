@@ -1,17 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>Reddit Test</h1>
+    <div class="main-container">
+      <reddits-list :reddits='reddits'></reddits-list>
+      <reddit-detail :reddit='selectedReddit'></reddit-detail>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import RedditsList from './components/RedditList.vue';
+import RedditDetail from './components/RedditDetail.vue';
+import { eventBus } from './main.js';
+
 
 export default {
-  name: 'App',
+  name: 'app',
+  data(){
+    return {
+      reddits: [],
+      selectedReddit: null
+    };
+  },
+  mounted(){
+    fetch('https://www.reddit.com/r/scotland.json')
+    .then(res => res.json())
+    .then(reddits => this.reddits = reddits)
+
+    eventBus.$on('reddit-selected', (reddit) => {
+      this.selectedReddit = reddit
+    })
+  },
   components: {
-    HelloWorld
+    "reddits-list": RedditsList,
+    "reddit-detail": RedditDetail
   }
 }
 </script>
